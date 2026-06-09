@@ -1,0 +1,32 @@
+image_idx,page,path,caption,description,context_before,context_after
+0,0,images/9c0791a2a117a36f8c3b9915857e5603e950672e05de7e9686d106bac496feb6.jpg,,"这张图片展示了一张表格，包含了关于不同类型证券的财务信息。表格的布局和内容如下：
+
+1. **表格结构**：
+   - 表格上方标注“(Amounts in thousands)”。
+   - 表头包含年份“2014”和“2013”，以及“Coupon rate”和“Par amount”两个列标题。
+
+2. **主要对象**：
+   - 左侧是“Note type”列，其中列出了几种证券类型，包括“Senior notes”、“Subordinated notes”、“Convertible subordinated notes”和“Trust preferred”。
+   - 右侧的列显示了各证券类型的相关财务数据。
+
+3. **颜色标注**：
+   - **红色框**标记的区域表示“Multi-Row Cell”，指代一些跨越多行的单元格。
+   - **蓝色框**标记的区域表示“Multi-Column Cells”，指代跨越多列的单元格。
+   - **绿色框**标记的区域表示“Empty Cells”，指代空单元格。
+   - **紫色和橙色**标记的文本指出“没有垂直分隔符”和“没有水平分隔符”，强调表格的结构特征。
+
+4. **数据内容**：
+   - 各种证券的利率和面值数据以数字形式列出，单位为千美元（如",,"Structure recognition of tables generally requires it to be broken down into cells first and then building associations between them. Cell detection is carried out using either visual or linguistic cues or both. As a precursor to obtain a good structure recognition performance, it is imperative to detect cells that are highly accurate and closely overlap with the ground truth. In few instances where access to machinereadable PDFs is available, it becomes easier to identify content and its locati..."
+1,2,images/3ef09b463eae52a9f6d81df393ab4bedaadf37509d3c59d9c489911b5040a81f.jpg,,"这张图片展示了一种表格结构识别的流程图，主要由几个部分组成：
+
+1. **输入表格图像**：左下角显示了一张包含多行多列数据的表格，表格中有姓名、日期和数字等信息。
+
+2. **单元格检测**：在图的上方，有一个“单元格检测”部分，包含了“稀疏通道权重”和“ROI 对齐特征”的图示，表明该过程使用了一些特征提取技术。
+
+3. **特征金字塔**：在“单元格检测”下方，有一个“特征金字塔”图示，表示提取的特征层次结构。
+
+4. **结构识别**：右侧部分标示为“结构识别”，包括“矩形邻接关系”及“分类网络”，表示对单元格之间的关系进行分类和识别。
+
+5. **后处理**：右侧的“后处理”部分展示了一个XML输出示例，包含了关于表格的注释、尺寸和单元格坐标等信息。
+
+整体布局清晰，以箭头连接各个步骤，展示了表格结构识别从输入图像到输出结果的完整流程。色彩上使用了多种颜色来区分不同的模块，使得信息易于理解。","Early methods [36, 12] on table structure recognition primarily depend on hand-crafted features and heuristics (horizontal and vertical ruling lines, spacing, and geometric analysis). However, these usually make strong assumptions about table layouts for a domain agnostic algorithm. Some recent data-driven methods include works by [1, 32, 21, 33]. Cognitive methods in this space broadly classified into five categories — image-to-sequence models [17, 2, 14], segmentation networks [26, 18, 20, 23]...",

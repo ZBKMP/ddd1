@@ -1,0 +1,125 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: One of the following types: [dataset, methodology, evaluation criteria, algorithm, metric, table structure, visual feature, optimization technique, annotation, domain]
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: an integer score between 1 to 10, indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in Chinese as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into Chinese, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+entity_types: [dataset, methodology, evaluation criteria, algorithm, metric, table structure, visual feature, optimization technique, annotation, domain]
+text:
+ Also, our dataset and improved evaluation can serve for a more robust evaluation of table structure. Further, the reasoning behind using trainable loss weights could be extended to niche domain specific problems (understanding of graphs/charts and establishing correct reading order from document images).
+
+# Acknowledgment
+
+This work is partly supported by MEITY, Government of India.
+
+# References
+
+[1] Darshan Adiga, Shabir Ahmad Bhat, Muzaffar Bashir Shah, and Viveka Vyeth. Table structure recognition based on cell relationship, a bottom-up approach. In RANLP, 2019.   
+[2] Junwei Bao, Duyu Tang, Nan Duan, Zhao Yan, Yuanhua Lv, Ming Zhou, and Tiejun Zhao. Table-to-text: Describing table region with natural language. In AAAI, 2018.   
+[3] Zhaowei Cai and Nuno Vasconcelos. Cascade R-CNN: Delving into high quality object detection. In CVPR, 2018.   
+[4] Zewen Chi, Heyan Huang, Heng-Da Xu, Houjin Yu, Wanxuan Yin, and Xian-Ling Mao. Complicated table structure recognition. arXiv, 2019. [5] Li Deng, Shuo Zhang, and Krisztian Balog. Table2Vec: Neural word and entity embeddings for table population and retrieval. In SIGIR, 2019.   
+[6] Yuntian Deng, David Rosenberg, and Gideon Mann. Challenges in end-to-end neural scientific table recognition. In ICDAR, 2019. [7] L. Gao, Y. Huang, H. Dejean, J. Meunier, Q. Yan, Y. ´ Fang, F. Kleber, and E. Lang. ICDAR 2019 competition on table detection and recognition (cTDaR). In ICDAR, 2019.   
+[8] Max Gobel, Tamir Hassan, Ermelinda Oro, and Gior- ¨ gio Orsi. ICDAR 2013 table competition. In ICDAR, 2013. [9] E Green and M Krishnamoorthy. Recognition of tables using table grammars. In Annual Symposium on Document Analysis and Information Retrieval, 1995.   
+[10] Kaiming
+------------------------
+output:
+("entity"{tuple_delimiter}DATASET{tuple_delimiter}DATASET{tuple_delimiter}我们的数据集可以用于更稳健的表结构评估)
+{record_delimiter}
+("entity"{tuple_delimiter}EVALUATION{tuple_delimiter}EVALUATION CRITERIA{tuple_delimiter}改进的评估方法可以为表结构提供更稳健的评估)
+{record_delimiter}
+("entity"{tuple_delimiter}TABLE STRUCTURE{tuple_delimiter}TABLE STRUCTURE{tuple_delimiter}表结构是指表格中单元格之间的关系和布局)
+{record_delimiter}
+("entity"{tuple_delimiter}TRAINABLE LOSS WEIGHTS{tuple_delimiter}OPTIMIZATION TECHNIQUE{tuple_delimiter}可训练的损失权重是一种优化技术，可以扩展到特定领域的问题)
+{record_delimiter}
+("entity"{tuple_delimiter}NICHE DOMAIN{tuple_delimiter}DOMAIN{tuple_delimiter}特定领域问题包括图表理解和从文档图像中建立正确的阅读顺序)
+{record_delimiter}
+("relationship"{tuple_delimiter}DATASET{tuple_delimiter}EVALUATION{tuple_delimiter}数据集和改进的评估方法共同用于更稳健的表结构评估{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}EVALUATION{tuple_delimiter}TABLE STRUCTURE{tuple_delimiter}改进的评估方法专注于表结构的识别和评估{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}TRAINABLE LOSS WEIGHTS{tuple_delimiter}NICHE DOMAIN{tuple_delimiter}可训练的损失权重可以扩展到特定领域问题，如图表理解和文档图像的阅读顺序{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+entity_types: [dataset, methodology, evaluation criteria, algorithm, metric, table structure, visual feature, optimization technique, annotation, domain]
+text:
+as explained in Section 3.5) and extend those to full rows and columns to obtain bounding box coordinates for empty cells (assuming no empty cells are multi-row/column spanning). Details of this step are provided in the supplementary section. For a fair comparison of our method against DGCNN [22], we use TOD-Net to obtain cell bounding boxes, obtain row and column adjacency matrices using DGCNN [22] and use the open-source post-processing provided by [24]. In order to compare our method against others on TUCD dataset, we develop our implementation of DeepDeSRT [26], and use open source implementations of DGCNN (TIES) [22], SPLERGE [30], and TabStruct-Net [24]. For others, we directly report results from the corresponding papers. From the table, it is evident that formulating the problem using rectilinear adjacencies instead of row/column adjacency avoids errors in long visual ranges, relaxes heuristics in the post-processing method. Our method outperforms previous state-of-the-art on all three datasets by a reasonable difference of average F1-score on structure recognition. We further observe that empty cells account for an average of $1 2 . 3 \%$ across UNLV and ICDAR-2013 datasets, where our method outperforms TabStruct-Net by $4 . 2 \%$ F1 score.
+
+Table 2. Compares various methods for table structure recognition on ICDAR-2013, SCI-TSR, SCI-TSR COMP, ICDAR-19 and TUCD datasets. Scores in italics are directly reported from corresponding papers. For others, we use open source implementations and pre-trained models released by authors. For DeepDeSRT [26], we use our implementation. EC: indicates evaluation criteria, SEC: indicates standard evaluation criteria, and NEC: indicates new evaluation criteria. P: indicates precision, R: indicates recall, and F1: indicates F1 score. TOD-Net†: indicates TOD-Net for direct cell detection and TOD-Net‡: indicates cell detection using intersection of TOD-Net results row and column predictions, DGCNN† indicates TOD- $\mathbf {{ N e t }} ^ {{ \dagger }} {{ + }} \mathbf {{ D G C N N + P P }}$ , DGCNN‡ indicates TOD-N $\mathsf {{ z t }} ^ {{ \dd
+------------------------
+output:
+("entity"{tuple_delimiter}TUCD DATASET{tuple_delimiter}DATASET{tuple_delimiter}TUCD数据集用于表格结构识别的比较研究，涉及多个方法的性能评估)
+{record_delimiter}
+("entity"{tuple_delimiter}ICDAR-2013 DATASET{tuple_delimiter}DATASET{tuple_delimiter}ICDAR-2013数据集用于表格结构识别的研究，包含空单元格的统计信息)
+{record_delimiter}
+("entity"{tuple_delimiter}ICDAR-19 DATASET{tuple_delimiter}DATASET{tuple_delimiter}ICDAR-19数据集用于表格结构识别的性能评估)
+{record_delimiter}
+("entity"{tuple_delimiter}SCI-TSR DATASET{tuple_delimiter}DATASET{tuple_delimiter}SCI-TSR数据集用于表格结构识别的研究和方法比较)
+{record_delimiter}
+("entity"{tuple_delimiter}SCI-TSR COMP DATASET{tuple_delimiter}DATASET{tuple_delimiter}SCI-TSR COMP数据集是SCI-TSR的扩展版本，用于更复杂的表格结构识别任务)
+{record_delimiter}
+("entity"{tuple_delimiter}DGCNN{tuple_delimiter}ALGORITHM{tuple_delimiter}DGCNN是一种用于表格行列邻接矩阵生成的算法，并结合开源后处理方法)
+{record_delimiter}
+("entity"{tuple_delimiter}DEEPDESRT{tuple_delimiter}ALGORITHM{tuple_delimiter}DeepDeSRT是一种表格结构识别算法，本文实现了其方法以进行比较)
+{record_delimiter}
+("entity"{tuple_delimiter}SPLERGE{tuple_delimiter}ALGORITHM{tuple_delimiter}SPLERGE是一种用于表格结构识别的开源算法)
+{record_delimiter}
+("entity"{tuple_delimiter}TABSTRUCT-NET{tuple_delimiter}ALGORITHM{tuple_delimiter}TabStruct-Net是一种表格结构识别算法，本文通过开源实现进行了性能比较)
+{record_delimiter}
+("entity"{tuple_delimiter}TOD-NET{tuple_delimiter}ALGORITHM{tuple_delimiter}TOD-Net是一种直接用于单元格检测的算法，并结合行列预测结果进行改进)
+{record_delimiter}
+("entity"{tuple_delimiter}EVALUATION CRITERIA{tuple_delimiter}EVALUATION CRITERIA{tuple_delimiter}评估标准用于比较不同表格结构识别方法的性能，包括精度、召回率和F1分数)
+{record_delimiter}
+("entity"{tuple_delimiter}RECTILINEAR ADJACENCIES{tuple_delimiter}METHODOLOGY{tuple_delimiter}基于直线邻接的表格结构问题建模方法，避免了长视觉范围内的错误)
+{record_delimiter}
+("relationship"{tuple_delimiter}TUCD DATASET{tuple_delimiter}DEEPDESRT{tuple_delimiter}TUCD数据集用于评估DeepDeSRT算法的表格结构识别性能{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}ICDAR-2013 DATASET{tuple_delimiter}TABSTRUCT-NET{tuple_delimiter}ICDAR-2013数据集显示TabStruct-Net在空单元格识别上的性能{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}TOD-NET{tuple_delimiter}DGCNN{tuple_delimiter}TOD-Net与DGCNN结合用于生成行列邻接矩阵并改进单元格检测{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}EVALUATION CRITERIA{tuple_delimiter}SCI-TSR DATASET{tuple_delimiter}评估标准用于比较SCI-TSR数据集上的表格结构识别方法{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}RECTILINEAR ADJACENCIES{tuple_delimiter}TABSTRUCT-NET{tuple_delimiter}基于直线邻接的方法改进了TabStruct-Net的表格结构识别性能{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}TOD-NET{tuple_delimiter}TUCD DATASET{tuple_delimiter}TOD-Net在TUCD数据集上表现出色，超越了其他方法{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}SPLERGE{tuple_delimiter}SCI-TSR COMP DATASET{tuple_delimiter}SPLERGE在SCI-TSR COMP数据集上用于表格结构识别的性能评估{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+
+-Real Data-
+######################
+entity_types: [dataset, methodology, evaluation criteria, algorithm, metric, table structure, visual feature, optimization technique, annotation, domain]
+text: {input_text}
+######################
+output:

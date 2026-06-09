@@ -1,0 +1,145 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: One of the following types: [organization, product, technology, feature, brand, service]
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: an integer score between 1 to 10, indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in Chinese as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into Chinese, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+entity_types: [organization, product, technology, feature, brand, service]
+text:
+智能音箱王晖来计算机传媒有限公司云计算美的 智能门锁 Mini西门子 智能摄像头 Max松下 智能窗帘 Lite格力 智能体重秤 Ultra1亚马逊 智能电饭煲 Advanced这款智能电视的自动调节功能很实用，性价比高。晖来计算机传媒有限公司云计算晖来计算机传媒有限公司云计算晖来计算机传媒有限公司云计算晖来计算机传媒有限公司云计算顺丰速运小米智能家居
+------------------------
+output:
+("entity"{tuple_delimiter}智能音箱{tuple_delimiter}PRODUCT{tuple_delimiter}智能音箱是一种智能家居设备，能够通过语音交互实现多种功能，如播放音乐、控制家电等)
+{record_delimiter}
+("entity"{tuple_delimiter}晖来计算机传媒有限公司{tuple_delimiter}ORGANIZATION{tuple_delimiter}晖来计算机传媒有限公司是一家提供云计算服务的公司)
+{record_delimiter}
+("entity"{tuple_delimiter}云计算{tuple_delimiter}TECHNOLOGY{tuple_delimiter}云计算是一种通过互联网提供计算资源和服务的技术)
+{record_delimiter}
+("entity"{tuple_delimiter}美的{tuple_delimiter}BRAND{tuple_delimiter}美的是一家知名的家电品牌，提供多种智能家居产品)
+{record_delimiter}
+("entity"{tuple_delimiter}智能门锁 Mini{tuple_delimiter}PRODUCT{tuple_delimiter}智能门锁 Mini 是一款由美的推出的智能门锁产品，支持远程控制和安全管理)
+{record_delimiter}
+("entity"{tuple_delimiter}西门子{tuple_delimiter}BRAND{tuple_delimiter}西门子是一家全球知名的技术公司，提供多种智能家居和工业解决方案)
+{record_delimiter}
+("entity"{tuple_delimiter}智能摄像头 Max{tuple_delimiter}PRODUCT{tuple_delimiter}智能摄像头 Max 是一款由西门子推出的智能摄像头，支持高清监控和远程查看)
+{record_delimiter}
+("entity"{tuple_delimiter}松下{tuple_delimiter}BRAND{tuple_delimiter}松下是一家知名的电子产品品牌，提供多种智能家居设备)
+{record_delimiter}
+("entity"{tuple_delimiter}智能窗帘 Lite{tuple_delimiter}PRODUCT{tuple_delimiter}智能窗帘 Lite 是一款由松下推出的智能窗帘产品，支持自动开合和远程控制)
+{record_delimiter}
+("entity"{tuple_delimiter}格力{tuple_delimiter}BRAND{tuple_delimiter}格力是一家知名的家电品牌，专注于空调和智能家居产品)
+{record_delimiter}
+("entity"{tuple_delimiter}智能体重秤 Ultra1{tuple_delimiter}PRODUCT{tuple_delimiter}智能体重秤 Ultra1 是一款由格力推出的智能体重秤，支持健康数据监测和分析)
+{record_delimiter}
+("entity"{tuple_delimiter}亚马逊{tuple_delimiter}BRAND{tuple_delimiter}亚马逊是一家全球知名的电商和技术公司，提供多种智能家居产品)
+{record_delimiter}
+("entity"{tuple_delimiter}智能电饭煲 Advanced{tuple_delimiter}PRODUCT{tuple_delimiter}智能电饭煲 Advanced 是一款由亚马逊推出的智能电饭煲，支持自动烹饪和远程控制)
+{record_delimiter}
+("entity"{tuple_delimiter}智能电视{tuple_delimiter}PRODUCT{tuple_delimiter}智能电视是一种支持互联网连接和多媒体功能的电视设备，具有自动调节功能和高性价比)
+{record_delimiter}
+("entity"{tuple_delimiter}顺丰速运{tuple_delimiter}ORGANIZATION{tuple_delimiter}顺丰速运是一家提供物流和快递服务的公司)
+{record_delimiter}
+("entity"{tuple_delimiter}小米智能家居{tuple_delimiter}SERVICE{tuple_delimiter}小米智能家居是一套由小米提供的智能家居解决方案，涵盖多种智能设备和服务)
+{record_delimiter}
+("relationship"{tuple_delimiter}晖来计算机传媒有限公司{tuple_delimiter}云计算{tuple_delimiter}晖来计算机传媒有限公司提供云计算服务{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}美的{tuple_delimiter}智能门锁 Mini{tuple_delimiter}智能门锁 Mini 是美的推出的智能家居产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}西门子{tuple_delimiter}智能摄像头 Max{tuple_delimiter}智能摄像头 Max 是西门子推出的智能家居产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}松下{tuple_delimiter}智能窗帘 Lite{tuple_delimiter}智能窗帘 Lite 是松下推出的智能家居产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}格力{tuple_delimiter}智能体重秤 Ultra1{tuple_delimiter}智能体重秤 Ultra1 是格力推出的智能家居产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}亚马逊{tuple_delimiter}智能电饭煲 Advanced{tuple_delimiter}智能电饭煲 Advanced 是亚马逊推出的智能家居产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}小米智能家居{tuple_delimiter}智能音箱{tuple_delimiter}智能音箱是小米智能家居解决方案的一部分{tuple_delimiter}7)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+entity_types: [organization, product, technology, feature, brand, service]
+text:
+智能空调林浙大万朋信息有限公司生物科技谷歌 智能音箱 Elite博世 智能马桶 Max华为 智能电视 Lite博世 智能空调 Lite格力 智能音箱 Advanced10美的 智能窗帘 Max购买后，这款智能空气净化器中规中矩。在早晨起床时使用体验还不错。但是使用久了会发现一些小问题。价格虽高，但物有所值。浙大万朋信息有限公司生物科技浙大万朋信息有限公司生物科技浙大万朋信息有限公司生物科技浙大万朋信息有限公司生物科技浙大万朋信息有限公司生物科技邮政EMS格力智能电器
+------------------------
+output:
+("entity"{tuple_delimiter}智能空调{tuple_delimiter}PRODUCT{tuple_delimiter}智能空调是一种能够自动调节室内温度的家用电器，提供舒适的环境控制)
+{record_delimiter}
+("entity"{tuple_delimiter}林浙大万朋信息有限公司{tuple_delimiter}ORGANIZATION{tuple_delimiter}林浙大万朋信息有限公司是一家专注于生物科技领域的公司)
+{record_delimiter}
+("entity"{tuple_delimiter}谷歌{tuple_delimiter}BRAND{tuple_delimiter}谷歌是一家全球知名的科技公司，提供多种技术和服务)
+{record_delimiter}
+("entity"{tuple_delimiter}智能音箱 ELITE{tuple_delimiter}PRODUCT{tuple_delimiter}智能音箱 Elite 是博世推出的一款高端语音助手设备)
+{record_delimiter}
+("entity"{tuple_delimiter}博世{tuple_delimiter}BRAND{tuple_delimiter}博世是一家知名的家电和工业技术品牌)
+{record_delimiter}
+("entity"{tuple_delimiter}智能马桶 MAX{tuple_delimiter}PRODUCT{tuple_delimiter}智能马桶 Max 是华为推出的一款高科技卫浴产品)
+{record_delimiter}
+("entity"{tuple_delimiter}华为{tuple_delimiter}BRAND{tuple_delimiter}华为是一家全球领先的通信技术和消费电子品牌)
+{record_delimiter}
+("entity"{tuple_delimiter}智能电视 LITE{tuple_delimiter}PRODUCT{tuple_delimiter}智能电视 Lite 是博世推出的一款智能家电产品，具有高性价比)
+{record_delimiter}
+("entity"{tuple_delimiter}智能空调 LITE{tuple_delimiter}PRODUCT{tuple_delimiter}智能空调 Lite 是格力推出的一款高效节能的空调产品)
+{record_delimiter}
+("entity"{tuple_delimiter}格力{tuple_delimiter}BRAND{tuple_delimiter}格力是一家专注于空调和家电产品的知名品牌)
+{record_delimiter}
+("entity"{tuple_delimiter}智能音箱 ADVANCED10{tuple_delimiter}PRODUCT{tuple_delimiter}智能音箱 Advanced10 是美的推出的一款高性能语音助手设备)
+{record_delimiter}
+("entity"{tuple_delimiter}美的{tuple_delimiter}BRAND{tuple_delimiter}美的是一家专注于家电和智能家居产品的知名品牌)
+{record_delimiter}
+("entity"{tuple_delimiter}智能窗帘 MAX{tuple_delimiter}PRODUCT{tuple_delimiter}智能窗帘 Max 是一款能够自动调节窗帘开合的智能家居产品)
+{record_delimiter}
+("entity"{tuple_delimiter}智能空气净化器{tuple_delimiter}PRODUCT{tuple_delimiter}智能空气净化器是一种能够过滤空气中污染物的家用设备，适合早晨使用)
+{record_delimiter}
+("entity"{tuple_delimiter}邮政 EMS{tuple_delimiter}SERVICE{tuple_delimiter}邮政 EMS 是一种提供快速物流和包裹递送的服务)
+{record_delimiter}
+("entity"{tuple_delimiter}格力智能电器{tuple_delimiter}SERVICE{tuple_delimiter}格力智能电器是格力提供的一系列智能家电产品和服务)
+{record_delimiter}
+("relationship"{tuple_delimiter}智能音箱 ELITE{tuple_delimiter}博世{tuple_delimiter}智能音箱 Elite 是由博世推出的产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}智能电视 LITE{tuple_delimiter}博世{tuple_delimiter}智能电视 Lite 是由博世推出的产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}智能马桶 MAX{tuple_delimiter}华为{tuple_delimiter}智能马桶 Max 是由华为推出的产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}智能空调 LITE{tuple_delimiter}格力{tuple_delimiter}智能空调 Lite 是由格力推出的产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}智能音箱 ADVANCED10{tuple_delimiter}美的{tuple_delimiter}智能音箱 Advanced10 是由美的推出的产品{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}格力智能电器{tuple_delimiter}格力{tuple_delimiter}格力智能电器是格力提供的服务{tuple_delimiter}8)
+{completion_delimiter}
+#############################
+
+
+
+-Real Data-
+######################
+entity_types: [organization, product, technology, feature, brand, service]
+text: {input_text}
+######################
+output:

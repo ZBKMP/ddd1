@@ -1,0 +1,57 @@
+/**
+ * GraphRAG 查询界面 — 蓝绿科幻主题
+ */
+:root {
+    /* 主色：蓝绿 */
+    --primary-color: #14B8A6;
+    --primary-light: #5EEAD4;
+    --primary-dark: #0D9488;
+    --secondary-color: #2DD4BF;
+    --accent-color: #06B6D4;
+
+    /* 文字（保持不变） */
+    --text-color: #333333;
+    --text-muted: #8C5E31;
+    --text-input: #663300;
+    --heading-color: #382110;
+
+    /* 背景：浅蓝 */
+    --page-gradient-start: #EBF5FF;
+    --page-gradient-end: #D4E9F7;
+    --surface-color: rgba(255, 255, 255, 0.92);
+    --surface-muted: #F0F8FF;
+    --input-bg: #F5FAFF;
+    --input-border: #B8D9F0;
+
+    /* 状态色：与主色一致 */
+    --success-color: #14B8A6;
+    --warning-color: #14B8A6;
+    --error-color: #14B8A6;
+    --error-bg: rgba(20, 184, 166, 0.1);
+    --error-border: rgba(20, 184, 166, 0.25);
+
+    /* 装饰：浅蓝 */
+    --card-shadow: 0 8px 24px rgba(56, 130, 180, 0.12);
+    --card-shadow-hover: 0 14px 32px rgba(56, 130, 180, 0.18);
+    --card-border: rgba(147, 197, 253, 0.45);
+    --nav-divider: #93C5FD;
+    --button-shadow: 0 4px 14px rgba(20, 184, 166, 0.28);
+    --button-shadow-hover: 0 8px 22px rgba(20, 184, 166, 0.38);
+    --focus-ring: rgba(20, 184, 166, 0.18);
+    --checkbox-bg: rgba(147, 197, 253, 0.15);
+    --checkbox-border: rgba(96, 165, 250, 0.35);
+    --loading-bg: rgba(235, 245, 255, 0.88);
+    --spinner-track: rgba(147, 197, 253, 0.35);
+
+    /* 渐变：深蓝 */
+    --gradient-start: #1E3A8A;
+    --gradient-end: #0C4A6E;
+
+    /* 科幻线条 */
+    --line-color: rgba(20, 184, 166, 0.22);
+    --line-glow: rgba(6, 182, 212, 0.55);
+    --line-grid: rgba(96, 165, 250, 0.12);
+
+    --transition-speed: 0.3s;
+    --font-family: 'Roboto', 'Arial', sans-serif;
+}

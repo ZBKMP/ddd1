@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphRAG 查询界面</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- 改颜色: static/css/theme.css -->
+    <link rel="stylesheet" href="/static/css/theme.css">
+  <!-- 改布局/组件样式: static/css/index.css -->
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <canvas id="sci-fi-canvas" aria-hidden="true"></canvas>
+    <div class="page-wrapper">
+        <div class="header">
+            <h1>Graph<span>RAG</span> 查询界面</h1>
+            <p class="subtitle">基于知识图谱的检索增强生成系统</p>
+        </div>
+
+        <div class="container">
+            <div class="nav-links">
+                <a href="/" class="current-page"><i class="fas fa-search"></i> 标准查询</a>
+                <a href="/stream"><i class="fas fa-stream"></i> 流式查询 (Markdown)</a>
+            </div>
+
+            <div class="form-group">
+                <label for="query"><i class="fas fa-question-circle"></i> 请输入您的查询：</label>
+                <textarea id="query" placeholder="例如：这篇论文主要研究什么问题？"></textarea>
+            </div>
+
+            <div class="options">
+                <div class="form-group">
+                    <label for="query-type"><i class="fas fa-filter"></i> 查询类型：</label>
+                    <select id="query-type">
+                        <option value="local">局部查询 (Local)</option>
+                        <option value="global">全局查询 (Global)</option>
+                        <option value="drift">漂移查询 (Drift)</option>
+                        <option value="basic">基础查询 (Basic)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="response-type"><i class="fas fa-file-code"></i> 响应类型：</label>
+                    <select id="response-type">
+                        <option value="text">文本 (Text)</option>
+                        <option value="json">JSON</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="community-level"><i class="fas fa-layer-group"></i> 社区级别：</label>
+                    <select id="community-level">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="dynamic-community-selection">
+                    <label for="dynamic-community-selection">
+                        <i class="fas fa-random"></i> 启用动态社区选择
+                    </label>
+                </div>
+            </div>
+
+            <button id="submit-btn" type="button"><i class="fas fa-paper-plane"></i> 提交查询</button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p><i class="fas fa-sync-alt"></i> 正在处理查询，请稍候...</p>
+            </div>
+
+            <div class="error" id="error"></div>
+
+            <div class="result" id="result">
+                <h3>查询结果</h3>
+                <div class="result-content" id="result-content"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>GraphRAG 查询系统 &copy; 2025 | 基于知识图谱增强的检索式生成</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/js/sci-fi-lines.js"></script>
+    <script src="/static/js/index.js"></script>
+</body>
+</html>

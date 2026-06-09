@@ -1,0 +1,7 @@
+# YAML配置文件  配置项: 配置值
+
+name: google_serper  # 工具名称
+label: 谷歌Serper搜索 #  页面显示标签
+description: 低成本的谷歌搜索API。当你需要搜索时事的时候，可以使用该工具，该工具的输入是一个查询语句
+params: []  # 参数列表 google_serper没有可配置参数 则定义为[]
+

@@ -1,0 +1,15 @@
+{
+  "name": "llmops_ui-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Root workspace wrapper — frontend lives in ./llmops_ui",
+  "scripts": {
+    "dev": "npm run dev --prefix llmops_ui",
+    "build": "npm run build --prefix llmops_ui",
+    "preview": "npm run preview --prefix llmops_ui",
+    "test:unit": "npm run test:unit --prefix llmops_ui",
+    "lint": "npm run lint --prefix llmops_ui",
+    "format": "npm run format --prefix llmops_ui",
+    "install:ui": "npm install --prefix llmops_ui"
+  }
+}

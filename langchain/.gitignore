@@ -1,0 +1,9 @@
+.venv/
+.idea/
+__pycache__/
+.env
+.env.*
+!.env.example
+internal/core/embeddings/
+storage/log/
+*.png

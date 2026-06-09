@@ -1,0 +1,39 @@
+# Python
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+
+# Secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local embedding models
+langchain/internal/core/embeddings/
+langchain/__lc/**/embeddings/
+**/models--*/
+**/*.safetensors
+**/*.bin
+**/*.pt
+**/*.pth
+
+# Runtime logs
+langchain/storage/log/
+
+# Node
+**/node_modules/
+**/dist/
+**/.eslintcache
+
+# IDE
+**/.idea/
+**/.vscode/
+!**/.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug logs
+debug-*.log
